@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 
 public class MapFragment extends Fragment {
@@ -49,6 +51,16 @@ public class MapFragment extends Fragment {
         //inflate and create the map
         map = (MapView) getActivity().findViewById(R.id.map);
         map.setTileSource(TileSourceFactory.MAPNIK);
+
+        //zoom controls
+        map.setBuiltInZoomControls(true);
+        map.setMultiTouchControls(true);
+
+        // default view point
+        IMapController mapController = map.getController();
+        mapController.setZoom(18);
+        GeoPoint startPoint = new GeoPoint(60.45485, 22.28512);
+        mapController.setCenter(startPoint);
 
         // set toolbar title
         activity.setTitle("Map");
