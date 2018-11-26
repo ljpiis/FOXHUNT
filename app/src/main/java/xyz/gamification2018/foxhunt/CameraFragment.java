@@ -3,11 +3,13 @@ package xyz.gamification2018.foxhunt;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +23,8 @@ public class CameraFragment extends Fragment {
 
     private Camera mCamera;
     private CameraPreview mPreview;
-    private Camera.PictureCallback mPicture;
-    private Button capture, switchCamera;
     private Context context;
     private FrameLayout cameraPreview;
-    private boolean cameraFront = false;
     public static Bitmap bitmap;
 
     @Nullable
@@ -56,10 +55,15 @@ public class CameraFragment extends Fragment {
 
         activity.findViewById(R.id.camera_button).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                mCamera.takePicture(null, null, null, null);
-                mCamera.release();
-                ((MainActivity)activity).openAnimalIdentify(v);
+            public void onClick(final View v) {
+                mCamera.takePicture(null, null, new Camera.PictureCallback() {
+                    @Override
+                    public void onPictureTaken(final byte[] arg0, Camera arg1) {
+                        ((MainActivity)activity).photo = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+                        mCamera.release();
+                        ((MainActivity)activity).openAnimalIdentify(v);
+                    }
+                });
             }
         });
 

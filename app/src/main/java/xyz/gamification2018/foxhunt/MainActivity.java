@@ -3,6 +3,7 @@ package xyz.gamification2018.foxhunt;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -26,6 +27,8 @@ import org.osmdroid.views.MapView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public Bitmap photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
