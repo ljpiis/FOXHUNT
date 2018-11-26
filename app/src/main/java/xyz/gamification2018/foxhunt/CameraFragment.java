@@ -54,6 +54,15 @@ public class CameraFragment extends Fragment {
 
         mCamera.startPreview();
 
+        activity.findViewById(R.id.camera_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCamera.takePicture(null, null, null, null);
+                mCamera.release();
+                ((MainActivity)activity).openAnimalIdentify(v);
+            }
+        });
+
         // set toolbar title
         activity.setTitle("Camera");
     }
