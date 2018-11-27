@@ -1,11 +1,9 @@
 package xyz.gamification2018.foxhunt;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -20,10 +18,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import org.osmdroid.config.Configuration;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.views.MapView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,7 +75,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_instant_mode) {
-            displayFragment(R.id.nav_camera);
+            displayFragment(R.id.nav_map);
             return true;
         }
 
@@ -92,23 +86,36 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
 
         switch (id) {
-            case R.id.nav_camera:
-                fragment = new CameraFragment();
-                break;
-            case R.id.nav_map:
-                fragment = new MapFragment();
-                break;
-            case R.id.nav_animal_select:
-                fragment = new AnimalSelectFragment();
+            case R.id.nav_animal_identify:
+                fragment = new AnimalIdentifyFragment();
                 break;
             case R.id.nav_animal_info:
                 fragment = new AnimalInfoFragment();
                 break;
-            case R.id.nav_animal_identify:
-                fragment = new AnimalIdentifyFragment();
+            case R.id.nav_animal_select:
+                fragment = new AnimalSelectFragment();
                 break;
-            case R.id.nav_settings:
-                fragment = new SettingsFragment();
+            case R.id.nav_camera:
+                fragment = new CameraFragment();
+                break;
+            case R.id.nav_info:
+                fragment = new InfoFragment();
+                break;
+            case R.id.nav_leaderboard:
+                fragment = new LeaderboardFragment();
+                break;
+            case R.id.nav_map:
+                fragment = new MapFragment();
+                break;
+            case R.id.nav_profile:
+                fragment = new ProfileFragment();
+                break;
+            case R.id.nav_registration:
+                fragment = new RegistrationFragment();
+                break;
+            case R.id.nav_teams:
+                fragment = new TeamsFragment();
+                break;
             default:
                 break;
         }
@@ -148,11 +155,27 @@ public class MainActivity extends AppCompatActivity
         displayFragment(R.id.nav_camera);
     }
 
+    public void openInfo(View view) {
+        displayFragment(R.id.nav_info);
+    }
+
+    public void openLeaderboard(View view) {
+        displayFragment(R.id.nav_leaderboard);
+    }
+
     public void openMap(View view) {
         displayFragment(R.id.nav_map);
     }
 
-    public void openSettings(View view) {
-        displayFragment(R.id.nav_settings);
+    public void openProfile(View view) {
+        displayFragment(R.id.nav_profile);
+    }
+
+    public void openRegistration(View view) {
+        displayFragment(R.id.nav_registration);
+    }
+
+    public void openTeams(View view) {
+        displayFragment(R.id.nav_teams);
     }
 }
