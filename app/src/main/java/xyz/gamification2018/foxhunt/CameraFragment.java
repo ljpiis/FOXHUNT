@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,7 +26,6 @@ public class CameraFragment extends Fragment {
     private CameraPreview mPreview;
     private Context context;
     private FrameLayout cameraPreview;
-    public static Bitmap bitmap;
 
     @Nullable
     @Override
@@ -59,7 +59,11 @@ public class CameraFragment extends Fragment {
                 mCamera.takePicture(null, null, new Camera.PictureCallback() {
                     @Override
                     public void onPictureTaken(final byte[] arg0, Camera arg1) {
-                        ((MainActivity)activity).photo = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+                        Matrix matrix = new Matrix();
+                        matrix.postRotate(90);
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+                        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+                        ((MainActivity)activity).photo = rotatedBitmap;
                         mCamera.release();
                         ((MainActivity)activity).openAnimalIdentify(v);
                     }

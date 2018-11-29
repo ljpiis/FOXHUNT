@@ -2,16 +2,19 @@ package xyz.gamification2018.foxhunt;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.overlays.GroundOverlay;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
@@ -62,6 +65,17 @@ public class MapFragment extends Fragment {
         mapController.setZoom(18);
         GeoPoint startPoint = new GeoPoint(60.45485, 22.28512);
         mapController.setCenter(startPoint);
+
+        GroundOverlay myGroundOverlay = new GroundOverlay();
+        myGroundOverlay.setPosition(startPoint);
+        Drawable d = ContextCompat.getDrawable(activity, R.drawable.marker_default);
+        myGroundOverlay.setImage(d.mutate());
+
+        // overlay width in meters (height calculated automatically) also you can set both width and height
+        myGroundOverlay.setDimensions(20.0f);
+        myGroundOverlay.setTransparency(0.25f);
+        myGroundOverlay.setBearing(0);
+        map.getOverlays().add(myGroundOverlay);
 
         // nightmode colours
         map.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
