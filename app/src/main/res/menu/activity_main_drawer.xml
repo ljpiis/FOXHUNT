@@ -11,7 +11,7 @@
             app:actionLayout="@layout/switch_item"
             app:showAsAction="always"></item>
         <item
-            android:id="@+id/nav_animal_info"
+            android:id="@+id/nav_animal_select"
             android:icon="@android:drawable/ic_menu_info_details"
             android:title="Animal Info" />
         <item
@@ -51,7 +51,7 @@
             android:title="Camera"
             android:visible="false" />
         <item
-            android:id="@+id/nav_animal_select"
+            android:id="@+id/nav_animal_info"
             android:icon="@android:drawable/ic_menu_gallery"
             android:title="Animal Select"
             android:visible="false" />

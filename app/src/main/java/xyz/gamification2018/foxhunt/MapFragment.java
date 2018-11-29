@@ -16,6 +16,7 @@ import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.TilesOverlay;
 
 public class MapFragment extends Fragment {
 
@@ -61,6 +62,9 @@ public class MapFragment extends Fragment {
         mapController.setZoom(18);
         GeoPoint startPoint = new GeoPoint(60.45485, 22.28512);
         mapController.setCenter(startPoint);
+
+        // nightmode colours
+        map.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
 
         // set toolbar title
         activity.setTitle("Map");
