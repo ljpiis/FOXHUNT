@@ -18,11 +18,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        CompoundButton.OnCheckedChangeListener {
 
     public Bitmap photo;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         // request camera permissions
@@ -63,6 +67,19 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        Switch s = (Switch) findViewById(R.id.switch_heatmap);
+        if (s != null)
+            s.setOnCheckedChangeListener(this);
+
+        s = (Switch) findViewById(R.id.switch_night);
+        if (s != null)
+            s.setOnCheckedChangeListener(this);
+
+        s = (Switch) findViewById(R.id.switch_sound);
+        if (s != null)
+            s.setOnCheckedChangeListener(this);
+
         return true;
     }
 
@@ -82,6 +99,9 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    // replaces the fragment based on the navigation item id,
+    // pushes the old one to the back stack for back button function
+    // and closes the navigation menu
     public void displayFragment(int id) {
         Fragment fragment = null;
 
@@ -120,7 +140,7 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        // replace the fragment
+        // replace fragment
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
@@ -128,18 +148,55 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
         }
 
+        // close menu
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
 
+    // every menu item that isn't a toggle switch is used to change fragment
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        displayFragment(item.getItemId());
+        int id = item.getItemId();
+        if (item.getActionView() != null) {
+            toggle(item);
+        } else {
+            displayFragment(id);
+        }
         return true;
     }
 
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            // do stuff
+        } else {
+            //do something when unchecked
+        }
+    }
+
+    // for also toggling switch items when clicked outside the actual switch
+    public void toggle(MenuItem item) {
+        int id = item.getItemId();
+        Switch s = null;
+        switch (id) {
+            case R.id.toggle_heatmap:
+                s = (Switch)item.getActionView().findViewById(R.id.switch_heatmap);
+                break;
+            case R.id.toggle_night:
+                s = (Switch)item.getActionView().findViewById(R.id.switch_night);
+                break;
+            case R.id.toggle_sounds:
+                s = (Switch)item.getActionView().findViewById(R.id.switch_sound);
+                break;
+            default:
+                break;
+        }
+        if (s != null)
+            s.toggle();
+    }
+
+    // onClick functions for regular buttons
     public void openAnimalIdentify(View view) {
         displayFragment(R.id.nav_animal_identify);
     }
