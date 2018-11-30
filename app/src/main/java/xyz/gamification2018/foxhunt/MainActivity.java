@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new RegistrationFragment();
                 break;
             case R.id.nav_teams:
-                fragment = new TeamsFragment();
+                fragment = new ProfileFragment();
                 break;
             default:
                 break;
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (item.getActionView() != null) {
-            //toggle(item);
+            toggle(item);
         } else {
             displayFragment(id);
         }
@@ -206,7 +206,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     // for also toggling switch items when clicked outside the actual switch
-    // (not used)
     public void toggle(MenuItem item) {
         int id = item.getItemId();
         Switch s = null;
