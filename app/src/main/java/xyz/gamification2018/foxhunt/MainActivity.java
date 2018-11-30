@@ -1,7 +1,10 @@
 package xyz.gamification2018.foxhunt;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity
         CompoundButton.OnCheckedChangeListener {
 
     public Bitmap photo;
+    public Boolean heatmapOn;
     private NavigationView navigationView;
 
     @Override
@@ -49,6 +54,8 @@ public class MainActivity extends AppCompatActivity
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_DENIED)
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, 1);
+
+        heatmapOn = false;
 
         displayFragment(R.id.nav_map);
     }
@@ -159,7 +166,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (item.getActionView() != null) {
-            toggle(item);
+            //toggle(item);
         } else {
             displayFragment(id);
         }
@@ -168,14 +175,38 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (isChecked) {
-            // do stuff
-        } else {
-            //do something when unchecked
+        int id = buttonView.getId();
+        Fragment f = null;
+        switch (id) {
+            case R.id.switch_heatmap:
+                heatmapOn = isChecked;
+                // redraw map
+                f = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+                getSupportFragmentManager().beginTransaction().detach(f).attach(f).commit();
+                break;
+            case R.id.switch_night:
+                if(isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                // hack for redrawing menus without recreating activity
+                // (always takes you back to map screen for some reason?)
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                // redraw map
+                f = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+                getSupportFragmentManager().beginTransaction().detach(f).attach(f).commit();
+                break;
+            case R.id.switch_sound:
+                break;
+            default:
+                break;
         }
     }
 
     // for also toggling switch items when clicked outside the actual switch
+    // (not used)
     public void toggle(MenuItem item) {
         int id = item.getItemId();
         Switch s = null;

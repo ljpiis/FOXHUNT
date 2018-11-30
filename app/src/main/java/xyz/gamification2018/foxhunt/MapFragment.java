@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,19 +67,24 @@ public class MapFragment extends Fragment {
         GeoPoint startPoint = new GeoPoint(60.45485, 22.28512);
         mapController.setCenter(startPoint);
 
-        GroundOverlay myGroundOverlay = new GroundOverlay();
-        myGroundOverlay.setPosition(startPoint);
-        Drawable d = ContextCompat.getDrawable(activity, R.drawable.marker_default);
-        myGroundOverlay.setImage(d.mutate());
+        // draw heatmap
+        if (((MainActivity)activity).heatmapOn) {
+            GroundOverlay myGroundOverlay = new GroundOverlay();
 
-        // overlay width in meters (height calculated automatically) also you can set both width and height
-        myGroundOverlay.setDimensions(20.0f);
-        myGroundOverlay.setTransparency(0.25f);
-        myGroundOverlay.setBearing(0);
-        map.getOverlays().add(myGroundOverlay);
+            myGroundOverlay.setPosition(startPoint);
+            Drawable d = ContextCompat.getDrawable(activity, R.drawable.marker_default);
+            myGroundOverlay.setImage(d.mutate());
+
+            // overlay width in meters (height calculated automatically) also you can set both width and height
+            myGroundOverlay.setDimensions(20.0f);
+            myGroundOverlay.setTransparency(0.25f);
+            myGroundOverlay.setBearing(0);
+            map.getOverlays().add(myGroundOverlay);
+        }
 
         // nightmode colours
-        map.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+            map.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
 
         // set toolbar title
         activity.setTitle("Map");
@@ -90,6 +96,11 @@ public class MapFragment extends Fragment {
         //if you make changes to the configuration, use
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
+
+        // nightmode colours
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+            map.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
+
         map.onResume(); //needed for compass, my location overlays, v6.0.0 and up
     }
 
