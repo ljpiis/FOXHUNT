@@ -3,10 +3,23 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/dk_lemon_yellow_sun</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorButtonNormal</item>
+        <item name="colorControlActivated">?attr/colorAccent</item>
+        <item name="colorControlHighlight">@color/ripple_material_light</item>
+        <item name="colorControlNormal">?android:attr/textColorSecondary</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/dk_lemon_yellow_sun</item>
+        <item name="colorSwitchThumbNormal">@color/button_material_light</item>
+        <item name="controlBackground">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:colorBackground">@color/background_material_light</item>
+        <item name="android:colorForeground">@color/foreground_material_light</item>
+        <item name="android:textColorPrimary">@color/abc_primary_text_material_light</item>
+        <item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_light</item>
+        <item name="android:textColorSecondary">@color/abc_secondary_text_material_light</item>
+        <item name="android:textColorSecondaryInverse">@color/abc_secondary_text_material_light</item>-->
+        <item name="android:windowBackground">@color/background_material_light</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

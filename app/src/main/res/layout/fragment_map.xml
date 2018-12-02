@@ -17,13 +17,13 @@ android:layout_height="match_parent">
         android:onClick="openCamera"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
-<android.support.design.widget.FloatingActionButton
-    android:id="@+id/fab_report"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom|start"
-    android:layout_margin="@dimen/fab_margin"
-    android:onClick="openAnimalSelect"
-    app:srcCompat="@android:drawable/ic_menu_upload" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="@dimen/fab_margin"
+        android:onClick="openAnimalSelect"
+        app:srcCompat="@android:drawable/ic_menu_upload" />
 
 </android.support.design.widget.CoordinatorLayout>
