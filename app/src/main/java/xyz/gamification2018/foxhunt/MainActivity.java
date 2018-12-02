@@ -111,6 +111,8 @@ public class MainActivity extends AppCompatActivity
     // and closes the navigation menu
     public void displayFragment(int id) {
         Fragment fragment = null;
+        View scrollView = null;
+        View scrollTarget = null;
 
         switch (id) {
             case R.id.nav_animal_identify:
@@ -142,6 +144,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_teams:
                 fragment = new ProfileFragment();
+                scrollView = findViewById(R.id.scrollProfile);
+                scrollTarget = findViewById(R.id.headerTeams);
                 break;
             default:
                 break;
@@ -153,6 +157,11 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.content_frame, fragment);
             ft.addToBackStack(null);
             ft.commit();
+        }
+
+        // should scroll down but doesn't
+        if (scrollTarget != null) {
+            scrollView.scrollTo(0, scrollTarget.getBaseline());
         }
 
         // close menu
