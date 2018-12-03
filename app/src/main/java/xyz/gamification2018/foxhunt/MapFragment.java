@@ -72,7 +72,7 @@ public class MapFragment extends Fragment {
             GroundOverlay myGroundOverlay = new GroundOverlay();
 
             myGroundOverlay.setPosition(startPoint);
-            Drawable d = ContextCompat.getDrawable(activity, R.drawable.marker_default);
+            Drawable d = ContextCompat.getDrawable(activity, R.drawable.ic_kettu);
             myGroundOverlay.setImage(d.mutate());
 
             // overlay width in meters (height calculated automatically) also you can set both width and height

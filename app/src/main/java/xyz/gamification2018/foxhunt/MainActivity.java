@@ -160,9 +160,9 @@ public class MainActivity extends AppCompatActivity
         }
 
         // should scroll down but doesn't
-        if (scrollTarget != null) {
-            scrollView.scrollTo(0, scrollTarget.getBaseline());
-        }
+        //if (scrollTarget != null) {
+        //    scrollView.scrollTo(0, scrollTarget.getBaseline());
+        //}
 
         // close menu
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
