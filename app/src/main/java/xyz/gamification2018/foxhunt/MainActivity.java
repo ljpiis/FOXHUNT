@@ -32,10 +32,14 @@ public class MainActivity extends AppCompatActivity
     public Bitmap photo;
     public Boolean heatmapOn;
     private NavigationView navigationView;
+    public Boolean scrollDown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState == null)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, 1);
 
         heatmapOn = false;
+        scrollDown = false;
 
         displayFragment(R.id.nav_map);
     }
@@ -111,8 +116,6 @@ public class MainActivity extends AppCompatActivity
     // and closes the navigation menu
     public void displayFragment(int id) {
         Fragment fragment = null;
-        View scrollView = null;
-        View scrollTarget = null;
 
         switch (id) {
             case R.id.nav_animal_identify:
@@ -137,6 +140,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new MapFragment();
                 break;
             case R.id.nav_profile:
+                scrollDown = false;
                 fragment = new ProfileFragment();
                 break;
             case R.id.nav_registration:
@@ -144,8 +148,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_teams:
                 fragment = new ProfileFragment();
-                scrollView = findViewById(R.id.scrollProfile);
-                scrollTarget = findViewById(R.id.headerTeams);
+                scrollDown = true;
                 break;
             default:
                 break;
@@ -158,11 +161,6 @@ public class MainActivity extends AppCompatActivity
             ft.addToBackStack(null);
             ft.commit();
         }
-
-        // should scroll down but doesn't
-        //if (scrollTarget != null) {
-        //    scrollView.scrollTo(0, scrollTarget.getBaseline());
-        //}
 
         // close menu
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
