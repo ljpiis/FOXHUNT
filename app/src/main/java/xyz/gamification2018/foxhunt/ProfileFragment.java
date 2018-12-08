@@ -35,7 +35,7 @@ public class ProfileFragment extends Fragment {
             scrollView.post(new Runnable() {
                 @Override
                 public void run() {
-                    scrollView.scrollTo(0, activity.findViewById(R.id.headerTeams).getBottom());
+                    scrollView.scrollTo(0, activity.findViewById(R.id.headerProfileTeams).getTop());
                 }
             });
         }

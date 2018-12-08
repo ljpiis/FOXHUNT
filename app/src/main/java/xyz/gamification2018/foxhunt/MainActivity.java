@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity
         displayFragment(R.id.nav_teams);
     }
 
-    public void scrollToCharacteristics(View view) {
+    public void scrollToInfoCharacteristics(View view) {
         final ScrollView scrollView = findViewById(R.id.scrollAnimalInfo);
 
         scrollView.post(new Runnable() {
@@ -286,13 +286,35 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    public void scrollToSightings(View view) {
+    public void scrollToInfoSightings(View view) {
         final ScrollView scrollView = findViewById(R.id.scrollAnimalInfo);
 
         scrollView.post(new Runnable() {
             @Override
             public void run() {
                 scrollView.scrollTo(0, findViewById(R.id.headerSightings).getTop());
+            }
+        });
+    }
+
+    public void scrollToProfileSightings(View view) {
+        final ScrollView scrollView = findViewById(R.id.scrollProfile);
+
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.scrollTo(0, findViewById(R.id.headerProfileSightings).getTop());
+            }
+        });
+    }
+
+    public void scrollToProfileTeams(View view) {
+        final ScrollView scrollView = findViewById(R.id.scrollProfile);
+
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.scrollTo(0, findViewById(R.id.headerProfileTeams).getTop());
             }
         });
     }

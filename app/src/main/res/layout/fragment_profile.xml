@@ -62,17 +62,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
-                android:id="@+id/headerCharacteristics"
+                android:id="@+id/headerProfileSightings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="64dp"
                 android:text="Sightings"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/colorAccent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/profileSightButton" />
 
             <Button
                 android:id="@+id/ok_button"
@@ -91,25 +91,50 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <TextView
-                android:id="@+id/textView4"
+            <ImageButton
+                android:id="@+id/profileSightButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginTop="36dp"
+                android:onClick="scrollToProfileSightings"
+                app:layout_constraintEnd_toStartOf="@+id/profileTeamButton"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:srcCompat="@drawable/ic_lippu" />
+
+            <ImageButton
+                android:id="@+id/profileTeamButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:onClick="scrollToProfileTeams"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/profileSightButton"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:srcCompat="@drawable/ic_torvi" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
                 android:text="@string/lipsum_a"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/headerCharacteristics" />
+                app:layout_constraintTop_toBottomOf="@+id/headerProfileSightings" />
 
             <TextView
-                android:id="@+id/headerTeams"
+                android:id="@+id/headerProfileTeams"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="64dp"
                 android:text="Team"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/colorAccent"
@@ -118,16 +143,16 @@
 
             <TextView
                 android:id="@+id/textView6"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
                 android:text="@string/lipsum_b"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/headerTeams" />
+                app:layout_constraintTop_toBottomOf="@+id/headerProfileTeams" />
 
             <ImageView
                 android:id="@+id/imageView10"
@@ -135,8 +160,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                app:layout_constraintStart_toEndOf="@+id/headerCharacteristics"
                 app:layout_constraintBottom_toTopOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/headerProfileSightings"
                 app:srcCompat="@drawable/ic_lippu"
                 tools:layout_editor_absoluteY="296dp" />
 
@@ -146,8 +171,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                app:layout_constraintStart_toEndOf="@+id/headerTeams"
                 app:layout_constraintBottom_toTopOf="@+id/textView6"
+                app:layout_constraintStart_toEndOf="@+id/headerProfileTeams"
                 app:srcCompat="@drawable/ic_torvi"
                 tools:layout_editor_absoluteY="338dp" />
         </android.support.constraint.ConstraintLayout>
