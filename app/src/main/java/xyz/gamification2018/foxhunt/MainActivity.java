@@ -23,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
+import android.widget.ScrollView;
 import android.widget.Switch;
 
 public class MainActivity extends AppCompatActivity
@@ -272,5 +273,27 @@ public class MainActivity extends AppCompatActivity
 
     public void openTeams(View view) {
         displayFragment(R.id.nav_teams);
+    }
+
+    public void scrollToCharacteristics(View view) {
+        final ScrollView scrollView = findViewById(R.id.scrollAnimalInfo);
+
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.scrollTo(0, findViewById(R.id.headerCharacteristics).getTop());
+            }
+        });
+    }
+
+    public void scrollToSightings(View view) {
+        final ScrollView scrollView = findViewById(R.id.scrollAnimalInfo);
+
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.scrollTo(0, findViewById(R.id.headerSightings).getTop());
+            }
+        });
     }
 }
