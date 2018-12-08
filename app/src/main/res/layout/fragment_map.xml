@@ -24,6 +24,6 @@ android:layout_height="match_parent">
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="openAnimalSelect"
-        app:srcCompat="@android:drawable/ic_menu_upload" />
+        app:srcCompat="@drawable/ic_takajalka" />
 
 </android.support.design.widget.CoordinatorLayout>

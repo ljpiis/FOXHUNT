@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_instant_mode"
-        android:icon="@android:drawable/ic_menu_mapmode"
+        android:icon="@drawable/ic_tahtain"
         android:orderInCategory="100"
         android:title="@string/action_instant_mode"
         app:showAsAction="always" />

@@ -12,15 +12,15 @@
             app:showAsAction="always" />
         <item
             android:id="@+id/nav_animal_select"
-            android:icon="@android:drawable/ic_menu_info_details"
+            android:icon="@drawable/ic_takajalka"
             android:title="Animal Info" />
         <item
             android:id="@+id/nav_teams"
-            android:icon="@android:drawable/ic_menu_mapmode"
+            android:icon="@drawable/ic_torvi"
             android:title="Teams" />
         <item
             android:id="@+id/nav_leaderboard"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/ic_trophy"
             android:title="Leaderboard" />
         <item
             android:id="@+id/toggle_sounds"
@@ -34,7 +34,7 @@
             app:showAsAction="always" />
         <item
             android:id="@+id/nav_profile"
-            android:icon="@android:drawable/ic_menu_manage"
+            android:icon="@drawable/ic_kypara"
             android:title="Profile" />
         <item
             android:id="@+id/nav_registration"
