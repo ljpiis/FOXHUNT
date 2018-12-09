@@ -75,9 +75,9 @@ public class MapFragment extends Fragment {
             myGroundOverlay.setPosition(startPoint);
             Drawable d;
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-                d = ContextCompat.getDrawable(activity, R.drawable.heatmap_red);
+                d = ContextCompat.getDrawable(activity, R.drawable.heatmap_red_512);
             } else {
-                d = ContextCompat.getDrawable(activity, R.drawable.heatmap_white);
+                d = ContextCompat.getDrawable(activity, R.drawable.heatmap_white_512);
             }
             myGroundOverlay.setImage(d.mutate());
 
