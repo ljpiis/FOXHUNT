@@ -2,6 +2,7 @@ package xyz.gamification2018.foxhunt;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -72,11 +73,16 @@ public class MapFragment extends Fragment {
             GroundOverlay myGroundOverlay = new GroundOverlay();
 
             myGroundOverlay.setPosition(startPoint);
-            Drawable d = ContextCompat.getDrawable(activity, R.drawable.ic_kettu);
+            Drawable d;
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                d = ContextCompat.getDrawable(activity, R.drawable.heatmap_red);
+            } else {
+                d = ContextCompat.getDrawable(activity, R.drawable.heatmap_white);
+            }
             myGroundOverlay.setImage(d.mutate());
 
             // overlay width in meters (height calculated automatically) also you can set both width and height
-            myGroundOverlay.setDimensions(20.0f);
+            myGroundOverlay.setDimensions(100.0f);
             myGroundOverlay.setTransparency(0.25f);
             myGroundOverlay.setBearing(0);
             map.getOverlays().add(myGroundOverlay);
