@@ -23,6 +23,10 @@
             android:icon="@drawable/ic_trophy"
             android:title="Leaderboard" />
         <item
+            android:id="@+id/nav_welcome"
+            android:title="Welcome"
+            android:visible="false" />
+        <item
             android:id="@+id/toggle_sounds"
             android:title="Sounds"
             app:actionLayout="@layout/switch_sound"

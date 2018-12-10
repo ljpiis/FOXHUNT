@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         heatmapOn = false;
         scrollDown = false;
 
-        displayFragment(R.id.nav_map);
+        displayFragment(R.id.nav_welcome);
     }
 
     @Override
@@ -150,6 +150,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_teams:
                 fragment = new ProfileFragment();
                 scrollDown = true;
+                break;
+            case R.id.nav_welcome:
+                fragment = new WelcomeFragment();
                 break;
             default:
                 break;
